@@ -1,18 +1,27 @@
+# ---
+# Excerpted from "Exploring Graphs with Elixir",
+# published by The Pragmatic Bookshelf.
+# Copyrights apply to this code. It may not be used to create training material,
+# courses, books, articles, and the like. Contact us if you are in doubt.
+# We make no guarantees that this code is fit for any purpose.
+# Visit http://www.pragmaticprogrammer.com/titles/thgraphs for more book information.
+# ---
 defmodule GraphCommons do
-  @moduledoc """
-  Documentation for `GraphCommons`.
-  """
+  ## ATTRIBUTES
 
-  @doc """
-  Hello world.
+  @priv_dir "#{:code.priv_dir(:graph_commons)}"
 
-  ## Examples
+  ## TYPES
 
-      iex> GraphCommons.hello()
-      :world
+  @typedoc "Types for graph storage."
+  @type base_type :: :dgraph | :native | :property | :rdf | :tinker
+  @type graph_type :: base_type()
+  @type query_type :: base_type()
 
-  """
-  def hello do
-    :world
-  end
+  @typedoc "Type for testing file types."
+  @type file_test :: :dir? | :regular? | :exists?
+
+  ## FUNCTIONS
+
+  def storage_dir(), do: @priv_dir <> "/storage"
 end
