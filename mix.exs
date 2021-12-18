@@ -1,3 +1,11 @@
+# ---
+# Excerpted from "Exploring Graphs with Elixir",
+# published by The Pragmatic Bookshelf.
+# Copyrights apply to this code. It may not be used to create training material,
+# courses, books, articles, and the like. Contact us if you are in doubt.
+# We make no guarantees that this code is fit for any purpose.
+# Visit http://www.pragmaticprogrammer.com/titles/thgraphs for more book information.
+# ---
 defmodule ExGraphsBook.MixProject do
   use Mix.Project
 
@@ -14,26 +22,32 @@ defmodule ExGraphsBook.MixProject do
         :tinker_graph
       ],
       apps_path: "apps",
-      version: "0.1.0",
-      start_permanent: Mix.env() == :prod,
       deps: deps(),
       docs: [
         main: "readme",
         extras: ["README.md"]
-      ]
+      ],
+      start_permanent: Mix.env() == :prod
+    ]
+  end
+
+  defp deps do
+    [
+      {:inch_ex, github: "rrrene/inch_ex", only: [:dev, :test]},
+      {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false},
+      {:dialyxir, "~> 0.5", only: [:dev], runtime: false}
     ]
   end
 
   defp aliases do
-    []
-  end
-
-  # Dependencies listed here are available only for this
-  # project and cannot be accessed from applications inside
-  # the apps folder.
-  #
-  # Run "mix help deps" for examples and options.
-  defp deps do
-    []
+    [
+      test_d_graph: "cmd --app d_graph mix test --color",
+      test_graph_commons: "cmd --app graph_commons mix test --color",
+      test_graph_compute: "cmd --app graph_compute mix test --color",
+      test_native_graph: "cmd --app native_graph mix test --color",
+      test_property_graph: "cmd --app property_graph mix test --color",
+      test_rdf_graph: "cmd --app rdf_graph mix test --color",
+      test_tinker_graph: "cmd --app tinker_graph mix test --color"
+    ]
   end
 end
