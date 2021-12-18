@@ -55,4 +55,30 @@ defmodule GraphCommons.Query do
       uri: "file://" <> query_path
     }
   end
+
+  ## IMPLEMENTATIONS
+
+  defimpl Inspect, for: __MODULE__ do
+    @slice 16
+    @quote <<?">>
+
+    def inspect(%GraphCommons.Query{} = query, _opts) do
+      type = query.type
+      file = @quote <> query.file <> @quote
+
+      str =
+        query.data
+        |> String.replace("\n", "\\n")
+        |> String.replace(@quote, "\\" <> @quote)
+        |> String.slice(0, @slice)
+
+      data =
+        case String.length(str) < @slice do
+          true -> @quote <> str <> @quote
+          false -> @quote <> str <> "..." <> @quote
+        end
+
+      "#GraphCommons.Query<type: #{type}, file: #{file}, data: #{data}>"
+    end
+  end
 end
