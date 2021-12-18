@@ -5,7 +5,9 @@ defmodule ExGraphsBook.MixProject do
     [
       aliases: aliases(),
       apps: [
+        :d_graph,
         :graph_commons,
+        :graph_compute,
         :native_graph,
         :property_graph,
         :rdf_graph,
